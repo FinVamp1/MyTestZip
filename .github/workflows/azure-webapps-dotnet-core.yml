@@ -67,10 +67,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           path: ${{env.DOTNET_ROOT}}/myapp/release.zip
-          name: drop
-  Deploy:
-     runs-on: ubuntu-latest
-     steps:        
+          name: drop 
       - name: Create Output Directory
         shell: bash
         run: |
@@ -78,7 +75,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-         name: drop
+         name: download
          path: ${{ env.BUILD_OUTPUT_PATH }}
 
       
