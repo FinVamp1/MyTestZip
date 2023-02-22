@@ -70,20 +70,7 @@ jobs:
           name: drop
   Deploy:
      runs-on: ubuntu-latest
-     steps:
-      - name: Azure CLI script
-        uses: azure/CLI@v1
-        with:
-          azcliversion: 2.30.0
-          inlineScript: |
-            az account show
-      - name: Azure login
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          
+     steps:        
       - name: Create Output Directory
         shell: bash
         run: |
@@ -93,12 +80,7 @@ jobs:
         with:
          name: drop
          path: ${{ env.BUILD_OUTPUT_PATH }}
-      - name: Deploy to Azure Function App
-        uses: Azure/webapps-deploy@v2
-        with:
-         app-name: ${{ env.AzWebAppName }}
-         package: ${{ env.BUILD_OUTPUT_PATH }}/release.zip
-         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+
       
         
       
