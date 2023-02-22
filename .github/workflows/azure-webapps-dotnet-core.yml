@@ -61,6 +61,11 @@ jobs:
           dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
           cd  ${{env.DOTNET_ROOT}}/myapp
           zip -r release.zip  .
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: ${{env.DOTNET_ROOT}}/myapp/release.zip
+          name: drop
         
       
 
